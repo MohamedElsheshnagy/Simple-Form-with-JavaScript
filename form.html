@@ -1,1 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Browser</title>
+</head>
+<div id="error"></div>
+<form id="form" action="/" method="GET">
+  <div>
+    <label for="name">Name</label>
+    <input id="name" name="name" type="text" required>
+  </div>
+  <div>
+    <label for="phone">phone</label>
+    <input id="phone" name="phone" type="numbers">
+  </div>
+  <div>
+    <label for="email">Email</label>
+    <input id="email" name="email" type="text" required>
+  </div>
+  <button type="submit">Submit</button>
+</form>
+  <script src="script.js">
+    const name = document.getElementById('name')
+const phone = document.getElementById('phone')
+const email = document.getElementById('email')
+const form = document.getElementById('form')
+const errorElement = document.getElementById('error')
+
+form.addEventListener('submit', (e) => {
+  let messages = []
+  if (name.value === '' || name.value == null) {
+    messages.push('Name is required')
+  }
+   if (email.value === '' || email.value == null) {
+    messages.push('Email is required')
+  }
+
+  if (phone.value.length <= 11) {
+    messages.push('phone must be longer than 11 characters')
+  }
+
+  if (phone.value.length >= 11) {
+    messages.push('phone must be less than 11 characters')
+  }
+
+  if (phone.value === 'phone') {
+    messages.push('phone cannot be password')
+  }
+
+  if (messages.length > 0) {
+    e.preventDefault()
+    errorElement.innerText = messages.join(', ')
+  }
+})
+    </script>
+</body>
+
+</html>
 
